@@ -47,11 +47,12 @@ public class URLDemo3 {
     // Now the fun begins! Make one consumer for every URL
     for (int c = 0; c < count; c++) {
       URLConsumer3 consumer = new URLConsumer3("C" + c, queue);
-      if (useVirtual) {
-        Thread.startVirtualThread(consumer);
-      } else {
-        new Thread(consumer).start();
-      }
+//      if (useVirtual) {
+//        Thread.startVirtualThread(consumer);
+//      } else {
+//      }
+      new Thread(consumer).start();
+
     }
 
     // And watch for the empty queue

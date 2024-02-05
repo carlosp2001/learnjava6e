@@ -21,7 +21,7 @@ public class URLProducer implements Runnable {
    * @param count How many URLs this producer will create before quitting
    * @param queue The shared, synchronized queue for URLs
    */
-  public URLProducer(String id, int count, URLQueue queue) {
+  public  URLProducer(String id, int count, URLQueue queue) {
     // Don't even create this producer if a negative count was supplied or there's no queue
     if (count <= 0) {
       throw new IllegalArgumentException("Count must be positive");

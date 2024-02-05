@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lj6review">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/quiz/lj6review.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -40,6 +40,7 @@ public class Apple implements GamePiece {
      * Create an Apple of the given size
      */
     public Apple(Physicist owner, int size) {
+        System.out.println(owner);
         myPhysicist = owner;
         setSize(size);
     }

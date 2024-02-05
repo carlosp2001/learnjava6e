@@ -10,7 +10,7 @@ package ch09.examples;
  * @see URLConsumer
  */
 public class URLDemo {
-  public static void main(String args[]) {
+  public static void main(String[] args) {
     // Create our shared queue object
     URLQueue queue = new URLQueue();
     
@@ -32,7 +32,12 @@ public class URLDemo {
     tc1.start();
     Thread tc2 = new Thread(c2);
     tc2.start();
-    
+
+    Thread [] threads = new Thread [ 64 ]; // max threads to show
+    int num = Thread.enumerate(threads);
+    for(int i = 0; i < num; i++)
+      System.out.println(threads[i] +":"+ threads[i].getState());
+
     // First wait around for the producers to finish
     try {
       tp1.join();

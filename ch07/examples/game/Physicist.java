@@ -32,6 +32,7 @@ public class Physicist implements GamePiece {
      * Create a default, blue physicist
      */
     public Physicist() {
+        // This is the way that you can call a new constructor
         this(BLUE);
     }
 

@@ -55,7 +55,7 @@ public interface GamePiece {
      * By definition, a piece does NOT touch itself (i.e. it won't collide with itself).
      *
      * @param otherPiece
-     * @return
+     * @return boolean
      */
     boolean isTouching(GamePiece otherPiece);
 }

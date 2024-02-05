@@ -29,6 +29,7 @@ public class Field extends JComponent {
 
     protected void paintComponent(Graphics g) {
         g.setColor(fieldColor);
+        String.valueOf(1);
         g.fillRect(0,0, getWidth(), getHeight());
         for (Tree t : trees) {
             t.draw(g);

@@ -1,6 +1,8 @@
 package ch08.examples.game;
 
 import javax.swing.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 /**
@@ -16,15 +18,15 @@ public class AppleToss extends JFrame {
 
     Field field = new Field();
     Physicist player1 = new Physicist();
-	
-	// Helper class
-	Random random = new Random();
+
+    // Helper class
+    Random random = new Random();
 
     public AppleToss() {
         // Create our frame
         super("Apple Toss Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(FIELD_WIDTH,FIELD_HEIGHT);
+        setSize(FIELD_WIDTH, FIELD_HEIGHT);
         setResizable(false);
 
         // Build the field with our player and some trees
@@ -48,7 +50,7 @@ public class AppleToss extends JFrame {
 
     /**
      * Helper method to return a good y value for a tree so it's
-	 * not off the top or bottom of the screen.
+     * not off the top or bottom of the screen.
      *
      * @return y value within the bounds of the playing field height
      */
@@ -67,28 +69,53 @@ public class AppleToss extends JFrame {
      */
     private void setupFieldForOnePlayer() {
         // Place our (new) physicist in the lower left corner and connect them to the field
-        player1.setPosition(100,500);
+        player1.setPosition(100, 500);
         field.setPlayer(player1);
         player1.setField(field);
-		
-		// And now make a few trees for target practice
+
+        // And now make a few trees for target practice
         for (int i = field.trees.size(); i < Field.MAX_TREES; i++) {
             Tree t = new Tree();
             t.setPosition(goodX(), goodY());
             // Trees can be close to each other and overlap,
-			// but they shouldn't intersect our physicist
-            while(player1.isTouching(t)) {
+            // but they shouldn't intersect our physicist
+            while (player1.isTouching(t)) {
                 // We do intersect this tree, so let's try again
                 t.setPosition(goodX(), goodY());
                 System.err.println("Repositioning an intersecting tree...");
             }
-			field.addTree(t);
+            field.addTree(t);
         }
-		add(field);
+        add(field);
     }
 
     public static void main(String args[]) {
-        AppleToss game = new AppleToss();
-        game.setVisible(true);
+//        AppleToss game = new AppleToss();
+//        game.setVisible(true);
+
+        // Manipular fechas agregando dias o semanas
+        LocalDate reminder = LocalDate.now();
+        reminder = reminder.plusWeeks(1);
+
+        LocalDateTime betterReminder = reminder.atTime(LocalTime.of(9, 0));
+
+        System.out.println(betterReminder);
+
+        // Utilizando zonas horarias con fechas
+        LocalDateTime piLocal = LocalDateTime.parse("2023-03-14T02:00");
+
+        ZonedDateTime piCentral = piLocal.atZone(ZoneId.of("America/Tegucigalpa"));
+        System.out.println("piCentral " + piCentral);
+
+        ZonedDateTime piAlaMode = piCentral.withZoneSameInstant(ZoneId.of("Europe/Paris"));
+        System.out.println("piAlaMode" + piAlaMode);
+
+        // Convertimos la fecha a la nueva zona horaria
+        System.out.println(piCentral.withZoneSameInstant(ZoneId.systemDefault()));
+
+        // Utilizando el formateador de texto
+        DateTimeFormatter shortUs = DateTimeFormatter.ofPattern("M-d-y H:m z");
+
+        System.out.println(ZonedDateTime.parse("12-10-2021 12:30 EST", shortUs));
     }
 }

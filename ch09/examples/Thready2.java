@@ -1,7 +1,7 @@
 package ch09.examples;
 
 public class Thready2 {
-  public static void main( String args [] ) {
+  public static void main(String[] args) {
     Thread foo = new Thread(new ShowThread("Foo"));
     foo.setPriority( Thread.MIN_PRIORITY );
     Thread bar = new Thread(new ShowThread("Bar"));

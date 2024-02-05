@@ -28,7 +28,7 @@ public class Interruption extends JFrame implements MouseListener {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);
 
-    // Setup our label and give it an initial size and location
+    // Set up our label and give it an initial size and location
     message = new JLabel ("Pausing...");
     message.setBounds(labelX, labelY, labelW, labelH);
     add(message);
@@ -53,18 +53,16 @@ public class Interruption extends JFrame implements MouseListener {
   }
 
   public void startPause() {
-    fiveSeconds = new Thread(new Runnable() {
-      public void run() {
-        while (true) {
-          try {
-            moveMessage();
-            Thread.sleep(5000);
-            message.setForeground(Color.BLACK);
-            message.setText("Done. Pausing...");
-          } catch (InterruptedException ie) {
-            message.setForeground(Color.RED);
-            message.setText("Interrupted!");
-          }
+    fiveSeconds = new Thread(() -> {
+      while (true) {
+        try {
+          moveMessage();
+          Thread.sleep(5000);
+          message.setForeground(Color.BLACK);
+          message.setText("Done. Pausing...");
+        } catch (InterruptedException ie) {
+          message.setForeground(Color.RED);
+          message.setText("Interrupted!");
         }
       }
     });

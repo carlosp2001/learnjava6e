@@ -9,7 +9,8 @@ import javax.swing.*;
  */
 public class HelloJava2 {
   public static void main( String[] args ) {
-    JFrame frame = new JFrame( "HelloJava2" );
+    // JFrame es el contenedor (marco) principal de la aplicación
+    JFrame frame = new JFrame( "HelloJava2" ); // Se crea un nuevo marco con el título "HelloJava2"
     frame.add( new HelloComponent2("Hello, Java!") );
     frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     frame.setSize( 300, 300 );
@@ -31,15 +32,17 @@ class HelloComponent2 extends JComponent implements MouseMotionListener {
    * That position can be changed by dragging the mouse; we attach a listener
    * to pick up those drag events.
    */
-  public HelloComponent2( String message ) {
+  public HelloComponent2(String message ) {
     theMessage = message;
     addMouseMotionListener(this);
   }
 
+  @Override
   public void paintComponent( Graphics g ) {
     g.drawString( theMessage, messageX, messageY );
   }
 
+  @Override
   public void mouseDragged(MouseEvent e) {
     // Save the mouse coordinates and paint the message.
     messageX = e.getX();
@@ -47,7 +50,8 @@ class HelloComponent2 extends JComponent implements MouseMotionListener {
     repaint();
   }
 
-  public void mouseMoved(MouseEvent e) { 
+  @Override
+  public void mouseMoved(MouseEvent e) {
     // Ignore simple movements
   }
 }
